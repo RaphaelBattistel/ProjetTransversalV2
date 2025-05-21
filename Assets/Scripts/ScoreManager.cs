@@ -2,23 +2,26 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour 
 {
-    static ScoreManager instance;
+    public static ScoreManager instance;
     public int score;
     void Awake()
     {
-        if(instance = null)
+        if(instance == null)
             instance = this;
-        else
-            Destroy(this);
     }
 
     public void UpdateScore(int valeur, bool bonneRep)
     {
-        if(score <= 0 && (bonneRep = true))
+
+        if (!bonneRep)
+        {
+            score = score;
+        }
+        else if(score <= 0 && bonneRep)
         {
             score = valeur;
         }
-        else if(score > 0 && (bonneRep = true))
+        else if(score > 0 && bonneRep)
         {
             score += valeur;
         }

@@ -1,13 +1,15 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
+
 public class DragAndDrop : MonoBehaviour
 {
     Vector3 offset;
     Collider2D collider2d;
     public string destinationTag = "DropArea";
-    public string soluce;
-    public int a = 1;
+    public int id;
+    public int val;
+    
 
     void Awake()
     {
@@ -45,8 +47,13 @@ public class DragAndDrop : MonoBehaviour
                 if (hitInfo.transform.tag == destinationTag)
                 {
                     transform.position = hitInfo.transform.position + new Vector3(0, 0, -0.01f);
+                    
+                    ScoreManager.instance.UpdateScore(val, ScoreManager.instance.CheckScore(id, solut.id));
                 }
-                Debug.Log(solut.solution);
+                Debug.Log(id);
+                Debug.Log(solut.id);
+                Debug.Log(ScoreManager.instance.CheckScore(id, solut.id));
+                
             }
 
             

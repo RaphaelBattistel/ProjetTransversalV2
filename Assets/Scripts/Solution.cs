@@ -2,5 +2,11 @@ using UnityEngine;
 
 public class Solution : MonoBehaviour
 {
-    public string solution;
+    public Data data;
+    public int id;
+
+    private void Start()
+    {
+        id = data.idReponse;
+    }
 }
