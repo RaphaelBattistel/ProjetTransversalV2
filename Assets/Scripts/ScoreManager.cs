@@ -10,25 +10,10 @@ public class ScoreManager : MonoBehaviour
             instance = this;
     }
 
-    public void UpdateScore(int valeur, bool bonneRep)
+    public void UpdateScore(int valeur)
     {
 
-        if (!bonneRep)
-        {
-            score = score;
-        }
-        else if(score <= 0 && bonneRep)
-        {
-            score = valeur;
-        }
-        else if(score > 0 && bonneRep)
-        {
-            score += valeur;
-        }
-        else
-        {
-            return;
-        }
+        score += valeur;
     }
 
     public bool CheckScore(int id1, int id2)

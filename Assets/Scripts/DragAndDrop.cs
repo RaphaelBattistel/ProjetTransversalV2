@@ -47,12 +47,14 @@ public class DragAndDrop : MonoBehaviour
                 if (hitInfo.transform.tag == destinationTag)
                 {
                     transform.position = hitInfo.transform.position + new Vector3(0, 0, -0.01f);
+                    if (Game_Manager.instance.fin)
+                    {
+                        ScoreManager.instance.UpdateScore(val);
+                    }
                     
-                    ScoreManager.instance.UpdateScore(val, ScoreManager.instance.CheckScore(id, solut.id));
+                    
                 }
-                Debug.Log(id);
-                Debug.Log(solut.id);
-                Debug.Log(ScoreManager.instance.CheckScore(id, solut.id));
+                
                 
             }
 

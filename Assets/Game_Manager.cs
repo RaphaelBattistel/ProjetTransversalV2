@@ -1,29 +1,46 @@
+using NUnit.Framework.Constraints;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Game_Manager : MonoBehaviour
 {
+    private DragAndDrop dNg;
     public static Game_Manager instance;
-    public int countdownExtrait;
-    public int countdownRep;
+    public float countdown = 15f;
+    public bool fin = false;
+
 
     void Awake()
     {
         if (instance == null)
             instance = this;
+
+        dNg = GetComponent<DragAndDrop>();
     }
 
     private void Update()
     {
-        Debug.Log(Countdown());
+        Partie();
     }
 
-    public IEnumerator Countdown()
+    public void Partie()
     {
-        yield return new WaitForSeconds(countdownExtrait);
-        if(countdownExtrait <= 0)
+        
+        countdown -= Time.deltaTime;
+        if (countdown <= 0.0f)
         {
-            yield return new WaitForSeconds(countdownRep);
+            fin = true;
         }
+    }
+
+    public void Milieu()
+    {
+        
+    }
+
+    public void Fin()
+    {
+
     }
 }
