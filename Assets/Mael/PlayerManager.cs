@@ -1,4 +1,6 @@
 using Firebase.Database;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
@@ -90,6 +92,11 @@ public class PlayerManager : MonoBehaviour
                 {
                     Debug.Log("  startTimer: " + startTimer);
                     // TODO: Your game logic or UI update based on startTimer
+                    if (startTimer)
+                    {
+                        // Change Scene
+                        SceneManager.LoadScene(1, LoadSceneMode.Single);
+                    }
                 }
                 else
                 {

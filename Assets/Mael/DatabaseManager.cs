@@ -2,6 +2,7 @@ using Firebase.Database;
 using Firebase.Extensions;
 using System;
 using System.Collections.Generic;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,19 +16,21 @@ public class DatabaseManager : MonoBehaviour
     public Text hostText;
     public Text sessionText;
 
+    public GameObject startButton;
+
     private string userID;
     private DatabaseReference dbReference;
     private string sessionID;
     private PlayerManager playerManager;
 
-    public GameManager gameManager;
+    private bool hostCreatedSession;
+    private bool hostStartedGame;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         userID = SystemInfo.deviceUniqueIdentifier;
         dbReference = FirebaseDatabase.DefaultInstance.RootReference;
-        gameManager = GetComponent<GameManager>();
         playerManager = GetComponent<PlayerManager>();
     }
    
@@ -116,18 +119,34 @@ public class DatabaseManager : MonoBehaviour
             }
             else if (task.IsCompleted)
             {
-                hostText.text = "Creating";
+                hostText.text = "Success";
                 sessionText.text = "Session ID : " + sessionID;
+                hostCreatedSession = true;
+
+                startButton.SetActive(true);
             }
         });
 
         
     }
 
+
+    public void LaunchGame()
+    {
+        if (hostCreatedSession && !hostStartedGame)
+        {
+            Host newHost = new Host(Name.text, sessionID, true, 0);
+            string json = JsonUtility.ToJson(newHost);
+            dbReference.Child("hosts").SetRawJsonValueAsync(json);
+
+            hostStartedGame = true;
+        }
+    }
+
     // Génération d'ID de sessions
     string GenerateSessionID(int length)
     {
-        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         char[] stringChars = new char[length];
 
         for (int i = 0; i < length; i++)
