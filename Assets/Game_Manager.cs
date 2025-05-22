@@ -73,7 +73,8 @@ public class Game_Manager : MonoBehaviour
             }
             else
             {
-
+                NouvelleQuestion();
+                Ecoute();
             }
         }
     }
@@ -100,6 +101,14 @@ public class Game_Manager : MonoBehaviour
 
     public void Fin()
     {
+        countdown = dureeFin;
+        phaseReponse = false;
+    }
 
+    public void NouvelleQuestion()
+    {
+        // Logique Changement des cartes
+        // Reset positions des cartes
+        // Nouvelle question
     }
 }
