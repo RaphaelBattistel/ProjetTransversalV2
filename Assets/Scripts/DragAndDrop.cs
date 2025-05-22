@@ -9,25 +9,39 @@ public class DragAndDrop : MonoBehaviour
     public string destinationTag = "DropArea";
     public int id;
     public int val;
-    
+
+    [SerializeField] GameObject manager;
+    [SerializeField] Game_Manager gm;
+
 
     void Awake()
     {
         collider2d = GetComponent<Collider2D>();
+        manager = GameObject.FindWithTag("Game_Manager");
+        gm = manager.GetComponent<Game_Manager>();
     }
 
     void OnMouseDown()
     {
-        offset = transform.position - MouseWorldPosition();
+        if (gm.phaseReponse)
+        {
+            offset = transform.position - MouseWorldPosition();
+        }
+        
     }
 
     void OnMouseDrag()
     {
-        transform.position = MouseWorldPosition() + offset;
+        if (gm.phaseReponse)
+        {
+            transform.position = MouseWorldPosition() + offset;
+        }
     }
 
     void OnMouseUp()
     {
+        if (gm.phaseReponse)
+        {
         collider2d.enabled = false;
         var rayOrigin = Camera.main.transform.position;
         var rayDirection = MouseWorldPosition() - Camera.main.transform.position;
@@ -47,10 +61,8 @@ public class DragAndDrop : MonoBehaviour
                 if (hitInfo.transform.tag == destinationTag)
                 {
                     transform.position = hitInfo.transform.position + new Vector3(0, 0, -0.01f);
-                    if (Game_Manager.instance.fin)
-                    {
+
                         ScoreManager.instance.UpdateScore(val);
-                    }
                     
                     
                 }
@@ -61,6 +73,7 @@ public class DragAndDrop : MonoBehaviour
             
         }
         collider2d.enabled = true;
+        }
     }
 
     Vector3 MouseWorldPosition()
