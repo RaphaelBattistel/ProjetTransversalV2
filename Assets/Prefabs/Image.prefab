@@ -103,7 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   destinationTag: DropArea
   id: 2
-  val: 500
+  val: 0
   manager: {fileID: 0}
   gm: {fileID: 0}
 --- !u!61 &2734720984898013555

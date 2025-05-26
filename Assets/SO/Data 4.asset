@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acf322b3531198d4abdcf7c6bdb3d5b9, type: 3}
-  m_Name: Data
+  m_Name: Data 4
   m_EditorClassIdentifier: 
-  Question: {fileID: 21300000, guid: a12eada36b67c1d42ac81fe299ef6623, type: 3}
-  Reponse1: {fileID: 21300000, guid: e6b3e7c8d36e5124999f7d3cdea24c35, type: 3}
-  Reponse2: {fileID: 21300000, guid: 07dd5cd58da88e745ae64dd4c3fe5e25, type: 3}
-  Reponse3: {fileID: 21300000, guid: be8f8f120c741054d8714ba46c73115a, type: 3}
-  idQuestion: 0
-  idReponse: 1
+  Question: {fileID: 21300000, guid: c72ff2c48f300fc4e99643b04d7d20d5, type: 3}
+  Reponse1: {fileID: 0}
+  Reponse2: {fileID: 0}
+  Reponse3: {fileID: 0}
+  idQuestion: 4
+  idReponse: 2
