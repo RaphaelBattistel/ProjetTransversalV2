@@ -7,11 +7,15 @@ public class DragAndDrop : MonoBehaviour
     Vector3 offset;
     Collider2D collider2d;
     public string destinationTag = "DropArea";
+    [SerializeField] private Transform originPoint;
+
     public int id;
     public int val;
 
     [SerializeField] GameObject manager;
     [SerializeField] Game_Manager gm;
+
+    private Sprite _sprite;
 
 
     void Awake()
@@ -19,6 +23,27 @@ public class DragAndDrop : MonoBehaviour
         collider2d = GetComponent<Collider2D>();
         manager = GameObject.FindWithTag("Game_Manager");
         gm = manager.GetComponent<Game_Manager>();
+    }
+
+    private void Start()
+    {
+        if (id == Game_Manager.instance.data.idReponse)
+        {
+            val = 700;
+        }
+        else
+        {
+            val = 0;
+        }
+
+        if (id == 1)
+            _sprite = Game_Manager.instance.data.Reponse1;
+        else if (id == 2)
+            _sprite = Game_Manager.instance.data.Reponse2;
+        else
+            _sprite = Game_Manager.instance.data.Reponse3;
+
+        gameObject.GetComponent<SpriteRenderer>().sprite = _sprite;
     }
 
     void OnMouseDown()

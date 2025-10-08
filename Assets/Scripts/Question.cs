@@ -1,15 +1,18 @@
 using System;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
+using static Game_Manager;
 
 public class Question : MonoBehaviour
 {
-    public Data data;
+    private Sprite _sprite;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log(data.idQuestion);
-        Debug.Log(data.idReponse);
+        _sprite = instance.data.Question;
+        gameObject.GetComponent<SpriteRenderer>().sprite = _sprite;
+        gameObject.transform.position = Vector2.zero;
+
     }
 
     // Update is called once per frame
